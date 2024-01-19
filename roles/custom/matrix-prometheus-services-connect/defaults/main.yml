@@ -8,7 +8,6 @@ matrix_prometheus_services_connect_synapse_enabled: false
 
 # Controls whether the synapse rules shall be loaded into Prometheus
 matrix_prometheus_services_connect_synapse_rules_enabled: "{{ matrix_prometheus_services_connect_synapse_enabled }}"
-
 # Controls whether the synapse rules shall be downloaded
 matrix_prometheus_services_connect_synapse_rules_download_enabled: "{{ matrix_prometheus_services_connect_synapse_rules_enabled }}"
 matrix_prometheus_services_connect_synapse_rules_download_synapse_tag: master
