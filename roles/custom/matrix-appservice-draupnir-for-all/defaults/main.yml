@@ -5,14 +5,14 @@
 matrix_appservice_draupnir_for_all_enabled: true
 
 # renovate: datasource=docker depName=gnuxie/draupnir
-matrix_appservice_draupnir_for_all_version: "v1.86.2"
+matrix_appservice_draupnir_for_all_version: "develop"
 
 matrix_appservice_draupnir_for_all_container_image_self_build: false
 matrix_appservice_draupnir_for_all_container_image_self_build_repo: "https://github.com/the-draupnir-project/Draupnir.git"
 
 matrix_appservice_draupnir_for_all_docker_image: "{{ matrix_appservice_draupnir_for_all_docker_image_name_prefix }}gnuxie/draupnir:{{ matrix_appservice_draupnir_for_all_version }}"
 matrix_appservice_draupnir_for_all_docker_image_name_prefix: "{{ 'localhost/' if matrix_appservice_draupnir_for_all_container_image_self_build else matrix_container_global_registry_prefix }}"
-matrix_appservice_draupnir_for_all_docker_image_force_pull: "{{ matrix_appservice_draupnir_for_all_docker_image.endswith(':latest') }}"
+matrix_appservice_draupnir_for_all_docker_image_force_pull: "{{ matrix_appservice_draupnir_for_all_docker_image.endswith(':develop') }}"
 
 matrix_appservice_draupnir_for_all_base_path: "{{ matrix_base_data_path }}/draupnir-for-all"
 matrix_appservice_draupnir_for_all_config_path: "{{ matrix_appservice_draupnir_for_all_base_path }}/config"
@@ -62,7 +62,7 @@ matrix_appservice_draupnir_for_all_appservice_url: 'http://matrix-appservice-dra
 
 matrix_appservice_draupnir_for_all_database_connection_string: 'postgresql://{{ matrix_appservice_draupnir_for_all_database_username }}:{{ matrix_appservice_draupnir_for_all_database_password }}@{{ matrix_appservice_draupnir_for_all_database_hostname }}:{{ matrix_appservice_draupnir_for_all_database_port }}/{{ matrix_appservice_draupnir_for_all_database_name }}?sslmode={{ matrix_appservice_draupnir_for_all_database_sslmode }}'
 
-matrix_appservice_draupnir_for_all_user_prefix: "@draupnir_"
+matrix_appservice_draupnir_for_all_user_prefix: "draupnir_"
 
 matrix_appservice_draupnir_for_all_registration_yaml: |
   id: "draupnir-for-all"
