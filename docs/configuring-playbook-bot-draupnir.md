@@ -17,29 +17,33 @@ Using your own account, create a new invite only room that you will use to manag
 > [!WARNING]
 > Anyone in this room can control the bot so it is important that you only invite trusted users to this room.
 
-It is possible to make the management room encrypted (E2EE). If doing so, then you need to enable the native E2EE support (see [below](#native-e2ee-support)).
+If you determine that you need to use encryption for your management room against advice. You can enable support via enabling the native E2EE support (see [below](#native-e2ee-support)). See PLACEHOLDER_KITTY_FIX_ME for information on why you most likely do not need a encrypted management room.
 
 Once you have created the room you need to copy the room ID so you can specify it on your `inventory/host_vars/matrix.example.com/vars.yml` file. In Element Web you can check the ID by going to the room's settings and clicking "Advanced". The room ID will look something like `!qporfwt:example.com`.
 
 ## End-to-End Encryption support
 
-Decide whether you want to support having an encrypted management room or not. Draupnir can still protect encrypted rooms without encryption support enabled.
+Decide whether you want to support having an encrypted management room or not. Draupnir's ability to protect encrypted rooms against malicious actors is not affected by if it supports E2EE or not.
 
-Refer to Draupnir's [documentation](https://the-draupnir-project.github.io/draupnir-documentation/moderator/managing-protected-rooms#protecting-encrypted-rooms) for more details about why you might want to care about encryption support for protected rooms.
+Refer to Draupnir's [documentation](https://the-draupnir-project.github.io/draupnir-documentation/moderator/managing-protected-rooms#protecting-encrypted-rooms) for more details about why you dont need encryption support.
 
-### Disable Pantalaimon for Draupnir (since v2.0.0; optional)
+### Disable Pantalaimon for Draupnir (optional)
 
-It is known that running Draupnir along with Pantalaimon breaks all workflows that involve answering prompts with reactions.
+It is known that running Draupnir along with Pantalaimon breaks all workflows that involve answering prompts with reactions. 
 
-If you are updating Draupnir from v1.x.x and have enabled Pantalaimon for it, you can disable Pantalaimon in favor of the native E2EE support. To disable Pantalaimon, remove the configuration `matrix_bot_draupnir_pantalaimon_use: true` from your `vars.yml` file.
+If you wish to disable Pantalaimon without loosing encryption support you need to enable Native E2EE. To disable Pantalaimon, remove the configuration `matrix_bot_draupnir_pantalaimon_use: true` from your `vars.yml` file.
 
-**Note**: because the management room is still encrypted, disabling it without enabling the native E2EE support will break the management room.
+> [!NOTE]
+> If you replace your management room with a non encrypted version it is safe to disable encryption completely. If your management room remains encrypted you can not disable E2EE safely.
 
 ### Native E2EE support
 
 To enable the native E2EE support, you need to obtain an access token for Draupnir and set it on your `vars.yml` file.
 
-Note that native E2EE requires a clean access token that has not touched E2EE so curl is recommended as a method to obtain it. **The access token obtained via Element Web does not work with it**. Refer to the documentation on [how to obtain an access token via curl](obtaining-access-tokens.md#obtain-an-access-token-via-curl).
+Note that native E2EE requires a clean access token that has not touched E2EE so curl is recommended as a method to obtain it. Refer to the documentation on [how to obtain an access token via curl](obtaining-access-tokens.md#obtain-an-access-token-via-curl).
+
+> [!IMPORTANT]
+> The access token obtained via Element Web does not work with native E2EE
 
 To enable the native E2EE support, add the following configuration to your `vars.yml` file. Make sure to replace `CLEAN_ACCESS_TOKEN_HERE` with the access token you obtained just now.
 
@@ -87,7 +91,10 @@ Then, invite the bot (`@bot.draupnir:example.com`) to its management room which 
 
 ### Make sure the account is free from rate limiting (optional, recommended)
 
-If your homeserver's implementation is Synapse, you will need to prevent it from rate limiting the bot's account. **This is a highly recommended step. If you do not configure it, Draupnir performance will be degraded.**
+If your homeserver's implementation is Synapse, you will need to prevent it from rate limiting the bot's account.
+
+> [!WARNING]
+> If you do not disable rate limits, Draupnir performance will be degraded.
 
 This can be done using Synapse's [Admin APIs](https://element-hq.github.io/synapse/latest/admin_api/user_admin_api.html#override-ratelimiting-for-users). They can be accessed both externally and internally.
 
@@ -168,7 +175,9 @@ matrix_bot_draupnir_configuration_extension_yaml: |
 
 Replace your `matrix_bot_mjolnir` config with `matrix_bot_draupnir` config. Also disable Mjolnir if you're doing migration.
 
-Note that Draupnir supports E2EE natively, so you can enable it instead of Pantalaimon. It is recommended to consult the instruction [here](#native-e2ee-support).
+Note that Draupnir supports E2EE [natively](#native-e2ee-support) so you should enable this native support instead of using Pantalaimon as its unsupported by draupnir. Pantalaimon will break core parts of Draupnirs UX.
+
+Consult the instructions [here](#native-e2ee-support) on how to enable native E2EE. You can also migrate away from needing E2EE by migrating your management room away from E2EE.
 
 That is all you need to do due to that Draupnir can complete migration on its own.
 
