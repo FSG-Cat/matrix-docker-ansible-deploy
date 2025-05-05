@@ -3266,9 +3266,9 @@ matrix_appservice_draupnir_for_all_database_password: "{{ '%s' | format(matrix_h
 matrix_synapse_ext_synapse_http_antispam_enabled: "{{ matrix_bot_draupnir_config_web_synapseHTTPAntispam_enabled }}"
 matrix_synapse_ext_synapse_http_antispam_config_base_url: "{{ matrix_bot_draupnir_synapse_http_antispam_config_base_url if matrix_bot_draupnir_config_web_synapseHTTPAntispam_enabled else '' }}"
 matrix_synapse_ext_synapse_http_antispam_config_authorization: "{{ matrix_bot_draupnir_config_web_synapseHTTPAntispam_authorization if matrix_bot_draupnir_config_web_synapseHTTPAntispam_enabled else '' }}"
-matrix_synapse_ext_synapse_http_antispam_config_enabled_callbacks_yaml: "{{ matrix_bot_draunpir_synapse_http_antispam_config_enabled_callbacks_yaml if matrix_bot_draupnir_config_web_synapseHTTPAntispam_enabled else '' }}"
-matrix_synapse_ext_synapse_http_antispam_config_fail_open_yaml: "{{ matrix_bot_draupnir_synapse_http_antispam_config_fail_open_yaml if matrix_bot_draupnir_config_web_synapseHTTPAntispam_enabled else '' }}"
-matrix_synapse_ext_synapse_http_antispam_config_async_yaml: "{{ matrix_bot_draupnir_synapse_http_antispam_config_async_yaml if matrix_bot_draupnir_config_web_synapseHTTPAntispam_enabled else '' }}"
+matrix_synapse_ext_synapse_http_antispam_config_enabled_callbacks_list: "{{ matrix_bot_draunpir_synapse_http_antispam_config_enabled_callbacks_list if matrix_bot_draupnir_config_web_synapseHTTPAntispam_enabled else [] }}"
+matrix_synapse_ext_synapse_http_antispam_config_fail_open_map: "{{ matrix_bot_draupnir_synapse_http_antispam_config_fail_open_map if matrix_bot_draupnir_config_web_synapseHTTPAntispam_enabled else {} }}"
+matrix_synapse_ext_synapse_http_antispam_config_async_map: "{{ matrix_bot_draupnir_synapse_http_antispam_config_async_map if matrix_bot_draupnir_config_web_synapseHTTPAntispam_enabled else {} }}"
 
 ######################################################################
 #

@@ -1426,20 +1426,20 @@ matrix_synapse_ext_synapse_http_antispam_config_authorization: ''
 # This controls what callbacks are activated. This list is fully dependent on what consumer is in play.
 # And what capabilities said consumer should or shouldn't have. There are also performance implications
 # to these choices.
-matrix_synapse_ext_synapse_http_antispam_config_enabled_callbacks_yaml: ''
+matrix_synapse_ext_synapse_http_antispam_config_enabled_callbacks_list: []
 # Controls if a loss of connectivity to the consumer results in fail open or closed.
 # As in if failure results in events getting flagged automatically as spam or not.
-matrix_synapse_ext_synapse_http_antispam_config_fail_open_yaml: ''
+matrix_synapse_ext_synapse_http_antispam_config_fail_open_map: {}
 # Controls if the checking is blocking or not. This allows the homeserver to skip waiting for a consumer response.
-matrix_synapse_ext_synapse_http_antispam_config_async_yaml: ''
+matrix_synapse_ext_synapse_http_antispam_config_async_map: {}
 # Actual configuration passed to the synapse-http-antispam module
 matrix_synapse_ext_synapse_http_antispam_config: "{{ matrix_synapse_ext_synapse_http_antispam_config_yaml | from_yaml }}"
 matrix_synapse_ext_synapse_http_antispam_config_yaml: |
   base_url: {{ matrix_synapse_ext_synapse_http_antispam_config_base_url | to_json }}
   authorization: {{ matrix_synapse_ext_synapse_http_antispam_config_authorization | to_json }}
-  enabled_callbacks: {{ matrix_synapse_ext_synapse_http_antispam_config_enabled_callbacks_yaml | from_yaml }}
-  fail_open: {{ matrix_synapse_ext_synapse_http_antispam_config_fail_open_yaml | from_yaml }}
-  async: {{ matrix_synapse_ext_synapse_http_antispam_config_async_yaml | from_yaml }}
+  enabled_callbacks: {{ matrix_synapse_ext_synapse_http_antispam_config_enabled_callbacks_list | from_yaml }}
+  {{ matrix_synapse_ext_synapse_http_antispam_config_fail_open_map | from_yaml }}
+  {{ matrix_synapse_ext_synapse_http_antispam_config_async_map | from_yaml }}
 
 # Enable this to activate the E2EE disabling Synapse module.
 # See: https://github.com/digitalentity/matrix_encryption_disabler
